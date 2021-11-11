@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_attributes_attributes",
+  "info": {
+    "name": "attributes",
+    "icon": "font",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "offense": {
+      "type": "integer",
+      "default": 0
+    },
+    "defense": {
+      "type": "integer",
+      "default": 0
+    },
+    "cost": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

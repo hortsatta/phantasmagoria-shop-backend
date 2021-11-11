@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards",
+  "info": {
+    "name": "Card",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text"
+    },
+    "attr": {
+      "type": "component",
+      "repeatable": false,
+      "component": "attributes.attributes"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "coverImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "rarity": {
+      "model": "rarity",
+      "via": "card"
+    },
+    "category": {
+      "model": "category",
+      "via": "card"
+    },
+    "types": {
+      "collection": "type",
+      "via": "card"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "cards"
+    },
+    "updatedBy": {
+      "type": "component",
+      "repeatable": true,
+      "component": "updated-by.updated-by"
+    }
+  }
+}

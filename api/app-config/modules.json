@@ -1,0 +1,45 @@
+{
+  "shop": {
+    "key": "shop",
+    "path": "/shop",
+    "label": "Shop",
+    "children": {
+      "list": {
+        "key": "shop-list",
+        "path": "/",
+        "label": "Shop List",
+        "hidden": true
+      },
+      "landing": {
+        "key": "shop-landing",
+        "path": "/landing",
+        "label": "Landing",
+        "iconName": "storefront"
+      }
+    }
+  },
+  "cart": {
+    "key": "cart",
+    "path": "/cart",
+    "label": "Cart",
+    "iconName": "tray"
+  },
+  "favorite": {
+    "key": "favorite",
+    "path": "/favorites",
+    "label": "My Favorites",
+    "iconName": "knife"
+  },
+  "user": {
+    "key": "user",
+    "path": "/user",
+    "label": "User Account",
+    "iconName": "user-circle"
+  },
+  "about": {
+    "key": "about",
+    "path": "/about",
+    "label": "About Us",
+    "iconName": "brain"
+  }
+}

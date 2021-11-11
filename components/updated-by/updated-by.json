@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_updated_by_updated_bies",
+  "info": {
+    "name": "updated_by",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "datetime": {
+      "type": "datetime"
+    }
+  }
+}
