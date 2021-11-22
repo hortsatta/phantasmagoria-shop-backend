@@ -47,14 +47,6 @@
       "required": false,
       "pluginOptions": {}
     },
-    "rarity": {
-      "model": "rarity",
-      "via": "card"
-    },
-    "category": {
-      "model": "category",
-      "via": "card"
-    },
     "types": {
       "collection": "type",
       "via": "card"
@@ -68,6 +60,14 @@
       "type": "component",
       "repeatable": true,
       "component": "updated-by.updated-by"
+    },
+    "category": {
+      "via": "cards",
+      "model": "category"
+    },
+    "rarity": {
+      "via": "cards",
+      "model": "rarity"
     }
   }
 }

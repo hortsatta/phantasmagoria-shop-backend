@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "rarities",
   "info": {
-    "name": "Rarity"
+    "name": "Rarity",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,16 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string"
     },
     "slug": {
-      "type": "uid",
-      "targetField": "Name"
+      "type": "uid"
     },
-    "card": {
-      "via": "rarity",
-      "model": "card"
+    "cards": {
+      "collection": "card",
+      "via": "rarity"
     }
   }
 }
