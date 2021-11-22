@@ -33,13 +33,51 @@
   "user": {
     "key": "user",
     "path": "/user",
-    "label": "User Account",
-    "iconName": "user-circle"
+    "label": "User",
+    "children": {
+      "account": {
+        "key": "user-account",
+        "path": "/",
+        "label": "User Account",
+        "iconName": "user-circle"
+      },
+      "signIn": {
+        "key": "user-sign-in",
+        "path": "/sign-in",
+        "label": "Sign In",
+        "hidden": true
+      },
+      "signUp": {
+        "key": "user-sign-up",
+        "path": "/sign-up",
+        "label": "Sign Up",
+        "hidden": true
+      }
+    }
   },
   "about": {
     "key": "about",
     "path": "/about",
     "label": "About Us",
     "iconName": "brain"
+  },
+  "card": {
+    "key": "card",
+    "path": "/card",
+    "label": "Card",
+    "children": {
+      "add": {
+        "key": "card-add",
+        "path": "/add",
+        "label": "New Card",
+        "hidden": true
+      },
+      "edit": {
+        "key": "card-edit",
+        "path": "/edit",
+        "label": "Update Card",
+        "hidden": true
+      }
+    }
   }
 }
