@@ -15,6 +15,18 @@
         "path": "/landing",
         "label": "Landing",
         "iconName": "storefront"
+      },
+      "add": {
+        "key": "shop-item-add",
+        "path": "/add",
+        "label": "New Item",
+        "hidden": true
+      },
+      "edit": {
+        "key": "shop-item-edit",
+        "path": "/edit",
+        "label": "Update Item",
+        "hidden": true
       }
     }
   },
