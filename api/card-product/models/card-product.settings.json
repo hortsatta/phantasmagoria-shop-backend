@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card-products",
+  "info": {
+    "name": "Card Product"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "price": {
+      "type": "float"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "cards": {
+      "collection": "card",
+      "via": "card_products",
+      "dominant": true
+    }
+  }
+}

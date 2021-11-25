@@ -68,6 +68,10 @@
     "rarity": {
       "via": "cards",
       "model": "rarity"
+    },
+    "card_products": {
+      "via": "cards",
+      "collection": "card-product"
     }
   }
 }
