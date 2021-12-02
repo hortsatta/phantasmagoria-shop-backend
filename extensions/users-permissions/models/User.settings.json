@@ -62,6 +62,10 @@
     "cards": {
       "via": "user",
       "collection": "card"
+    },
+    "card_products": {
+      "via": "user",
+      "collection": "card-product"
     }
   }
 }

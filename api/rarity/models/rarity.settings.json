@@ -19,8 +19,8 @@
       "type": "uid"
     },
     "cards": {
-      "collection": "card",
-      "via": "rarity"
+      "via": "rarity",
+      "collection": "card"
     }
   }
 }

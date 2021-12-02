@@ -20,8 +20,8 @@
       "targetField": "name"
     },
     "cards": {
-      "collection": "card",
-      "via": "category"
+      "via": "category",
+      "collection": "card"
     }
   }
 }

@@ -5,4 +5,58 @@
  * to customize this controller
  */
 
-module.exports = {};
+ const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
+
+module.exports = {
+  // Create cards with linked user
+  async create(ctx) {
+    let entity;
+    if (ctx.is('multipart')) {
+      const { data, files } = parseMultipartData(ctx);
+      data.user = ctx.state.user.id;
+      entity = await strapi.services['card-product'].create(data, { files });
+    } else {
+      ctx.request.body.user = ctx.state.user.id;
+      entity = await strapi.services['card-product'].create(ctx.request.body);
+    }
+    return sanitizeEntity(entity, { model: strapi.models['card-product'] });
+  },
+  async update(ctx) {
+    const { id } = ctx.params;
+
+    const targetCardProduct = await strapi.services['card-product'].findOne({ id });
+
+    if (!targetCardProduct) {
+      return ctx.unauthorized('Card does not exist.');
+    }
+
+    const updatedBy = (targetCardProduct.updatedBy && targetCardProduct.updatedBy.length)
+      ? [
+        ...targetCardProduct.updatedBy.map(item => ({
+          user: item.user.id,
+          datetime: item.datetime
+        })),
+        {
+          user: ctx.state.user.id,
+          datetime: Date.now(),
+        },
+      ] : [{
+        user: ctx.state.user.id,
+        datetime: Date.now(),
+      }];
+
+    let entity;
+    if (ctx.is('multipart')) {
+      const { data, files } = parseMultipartData(ctx);
+      data.updated_by_user = updatedBy;
+      entity = await strapi.services['card-product'].update({ id }, data, {
+        files,
+      });
+    } else {
+      ctx.request.body.updatedBy = updatedBy;
+      entity = await strapi.services['card-product'].update({ id }, ctx.request.body);
+    }
+
+    return sanitizeEntity(entity, { model: strapi.models['card-product'] });
+  },
+};

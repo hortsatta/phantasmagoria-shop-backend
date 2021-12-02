@@ -18,9 +18,9 @@
       "type": "uid",
       "targetField": "name"
     },
-    "card": {
+    "cards": {
       "via": "types",
-      "model": "card"
+      "collection": "card"
     }
   }
 }

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "card-products",
   "info": {
-    "name": "Card Product"
+    "name": "Card Product",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -35,9 +36,19 @@
       "targetField": "name"
     },
     "cards": {
-      "collection": "card",
       "via": "card_products",
+      "collection": "card",
       "dominant": true
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "card_products"
+    },
+    "updatedBy": {
+      "type": "component",
+      "repeatable": true,
+      "component": "updated-by.updated-by"
     }
   }
 }
