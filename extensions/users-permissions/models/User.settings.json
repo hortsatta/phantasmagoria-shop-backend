@@ -66,6 +66,10 @@
     "card_products": {
       "via": "user",
       "collection": "card-product"
+    },
+    "user_account": {
+      "via": "user",
+      "model": "user-account"
     }
   }
 }

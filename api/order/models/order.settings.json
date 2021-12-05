@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "datetime"
+    },
+    "card_products": {
+      "collection": "card-product",
+      "via": "orders",
+      "dominant": true
+    },
+    "user_account": {
+      "model": "user-account",
+      "via": "orders"
+    },
+    "totalPrice": {
+      "type": "float"
+    },
+    "updatedBy": {
+      "type": "component",
+      "repeatable": true,
+      "component": "updated-by.updated-by"
+    }
+  }
+}

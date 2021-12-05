@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user-accounts",
+  "info": {
+    "name": "User Account",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "user_account"
+    },
+    "updatedBy": {
+      "type": "component",
+      "repeatable": true,
+      "component": "updated-by.updated-by"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "addresses": {
+      "type": "component",
+      "repeatable": true,
+      "component": "address.address"
+    },
+    "fullName": {
+      "type": "string"
+    },
+    "orders": {
+      "via": "user_account",
+      "collection": "order"
+    }
+  }
+}
