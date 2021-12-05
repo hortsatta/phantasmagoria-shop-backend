@@ -5,10 +5,10 @@
  * to customize this controller
  */
 
- const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
+const { parseMultipartData, sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
-  // Create cards with linked user
+  // Create card product with linked user
   async create(ctx) {
     let entity;
     if (ctx.is('multipart')) {
@@ -27,7 +27,7 @@ module.exports = {
     const targetCardProduct = await strapi.services['card-product'].findOne({ id });
 
     if (!targetCardProduct) {
-      return ctx.unauthorized('Card does not exist.');
+      return ctx.unauthorized('Card product does not exist.');
     }
 
     const updatedBy = (targetCardProduct.updatedBy && targetCardProduct.updatedBy.length)
