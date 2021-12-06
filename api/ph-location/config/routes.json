@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/ph-locations/regions",
+      "handler": "ph-location.findRegions",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ph-locations/regions/:code/provinces",
+      "handler": "ph-location.findProvinces",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ph-locations/provinces/:code/cities-municipalities",
+      "handler": "ph-location.findCitiesMunicipalities",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/ph-locations/cities-municipalities/:code/barangays",
+      "handler": "ph-location.findBarangays",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

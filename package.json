@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "axios": "^0.24.0",
     "graphql": "^16.0.1",
     "knex": "^0.95.14",
     "slugify": "^1.6.2",
@@ -29,7 +30,7 @@
     "strapi-utils": "3.6.8"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Erwin Errol Calanuga"
   },
   "strapi": {
     "uuid": "43ff30cf-a831-496a-9764-97452fe7317f"
