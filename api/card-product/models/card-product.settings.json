@@ -53,6 +53,10 @@
     "orders": {
       "via": "card_products",
       "collection": "order"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

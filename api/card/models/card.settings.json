@@ -73,6 +73,10 @@
     "card_products": {
       "via": "cards",
       "collection": "card-product"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
     }
   }
 }

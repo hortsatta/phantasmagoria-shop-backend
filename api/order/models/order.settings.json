@@ -16,8 +16,8 @@
       "type": "datetime"
     },
     "card_products": {
-      "collection": "card-product",
       "via": "orders",
+      "collection": "card-product",
       "dominant": true
     },
     "user_account": {
