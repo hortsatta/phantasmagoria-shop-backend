@@ -1,4 +1,10 @@
 {
+  "admin": {
+    "key": "admin",
+    "path": "/admin",
+    "label": "Administrator",
+    "hidden": true
+  },
   "shop": {
     "key": "shop",
     "path": "/shop",
@@ -75,9 +81,15 @@
   },
   "card": {
     "key": "card",
-    "path": "/card",
+    "path": "/cards",
     "label": "Card",
     "children": {
+      "list": {
+        "key": "card-list",
+        "path": "/",
+        "label": "Card List",
+        "hidden": true
+      },
       "add": {
         "key": "card-add",
         "path": "/add",
