@@ -8,7 +8,6 @@ module.exports = {
     type PhLocProvince {
       code: ID!
       name: String
-      regionCode: String
       islandGroupCode: String
     }
 
