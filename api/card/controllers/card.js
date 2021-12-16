@@ -23,9 +23,7 @@ module.exports = {
   },
   async update(ctx) {
     const { id } = ctx.params;
-
     const targetCard = await strapi.services.card.findOne({ id });
-
     if (!targetCard) {
       return ctx.unauthorized('Card does not exist.');
     }
@@ -54,6 +52,47 @@ module.exports = {
       });
     } else {
       ctx.request.body.updatedBy = updatedBy;
+      entity = await strapi.services.card.update({ id }, ctx.request.body);
+    }
+
+    return sanitizeEntity(entity, { model: strapi.models.card });
+  },
+  async delete(ctx) {
+    const { id } = ctx.params;
+    const targetCard = await strapi.services.card.findOne({ id });
+
+    if (!targetCard) {
+      return ctx.unauthorized('Card does not exist.');
+    }
+
+    if (targetCard.card_products.length) {
+      return ctx.methodNotAllowed('Card has card products attached.');
+    }
+
+    const updatedBy = (targetCard.updatedBy && targetCard.updatedBy.length)
+      ? [
+        ...targetCard.updatedBy.map(item => ({
+          user: item.user.id,
+          datetime: item.datetime
+        })),
+        {
+          user: ctx.state.user.id,
+          datetime: Date.now(),
+        },
+      ] : [{
+        user: ctx.state.user.id,
+        datetime: Date.now(),
+      }];
+
+    let entity;
+    if (ctx.is('multipart')) {
+      const { data } = parseMultipartData(ctx);
+      data.updated_by_user = updatedBy;
+      data.isActive = false;
+      entity = await strapi.services.card.update({ id }, data);
+    } else {
+      ctx.request.body.updatedBy = updatedBy;
+      ctx.request.body.isActive = false;
       entity = await strapi.services.card.update({ id }, ctx.request.body);
     }
 
