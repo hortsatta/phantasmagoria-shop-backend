@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "favorites",
+  "info": {
+    "name": "Favorite",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_account": {
+      "model": "user-account"
+    },
+    "card_products": {
+      "collection": "card-product",
+      "via": "favorites",
+      "dominant": true
+    }
+  }
+}
