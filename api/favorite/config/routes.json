@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/favorites/items",
+      "handler": "favorite.updateItems",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
