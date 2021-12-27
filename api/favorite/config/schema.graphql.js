@@ -7,7 +7,7 @@ module.exports = {
   resolver: {
     Mutation: {
       updateFavoriteItems: {
-        description: 'Add and remove favorite items from currennt user',
+        description: 'Add and remove favorite items from current user',
         resolver: 'application::favorite.favorite.updateItems',
       }
     },
