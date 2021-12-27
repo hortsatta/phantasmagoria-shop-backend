@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carts",
+  "info": {
+    "name": "Cart",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_account": {
+      "model": "user-account"
+    },
+    "cartItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "cart-item.cart-item"
+    }
+  }
+}

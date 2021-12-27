@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_cart_item_cart_items",
+  "info": {
+    "name": "Cart_Item",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "card_product": {
+      "model": "card-product"
+    },
+    "quantity": {
+      "type": "integer"
+    }
+  }
+}
