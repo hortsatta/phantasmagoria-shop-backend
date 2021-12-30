@@ -51,7 +51,15 @@
     {
       "method": "POST",
       "path": "/carts/items",
-      "handler": "favorite.updateItems",
+      "handler": "cart.updateItems",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/carts/clear",
+      "handler": "cart.clearItems",
       "config": {
         "policies": []
       }

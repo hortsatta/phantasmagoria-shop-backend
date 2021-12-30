@@ -9,7 +9,12 @@ const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
   async updateItems(ctx) {
-    const { user_account } = ctx.state.user;
+    const { user_account } = ctx.state.user || {};
+
+    if (!user_account) {
+      return ctx.unauthorized('User does not exist.');
+    }
+
     const { updateItems = [], removeItems = [] } = ctx.request.body;
     const targetCart = await strapi.services['cart'].findOne({ user_account });
 
@@ -26,15 +31,18 @@ module.exports = {
       const set = new Set();
       // Remove duplicates
       const newItems = mergedItems
-        .map(item => {
+        .filter(item => {
           if (!set.has(item.card_product)) {
             set.add(item.card_product);
-            const target = mergedItems.find(mi => mi.card_product === item.card_product && mi.id !== undefined)
-            return target ? { ...item, id: target.id } : item;
+            return true;
           }
-          return null;
+          return false;
         }, set)
-        .filter(item => !!item);
+        .map(item => {
+          if (item.id !== undefined) { return item; }
+          const target = targetCart.cartItems.find(ci => ci.card_product.id.toString() === item.card_product);
+          return target ? { ...item, id: target.id, quantity: target.quantity + item.quantity } : item;
+        });
       // And filter removed items
       const filteredNewItems = newItems.filter(ci => (
         !removeItems.some(item => ci.card_product.toString() === item.cardProduct.toString()))
@@ -49,6 +57,25 @@ module.exports = {
         cartItems: updateItems.map(({ quantity, cardProduct }) => ({ quantity, card_product: cardProduct }))
       });
     }
+
+    return sanitizeEntity(entity, { model: strapi.models['cart'] });
+  },
+  async clearItems(ctx) {
+    const { user_account } = ctx.state.user || {};
+
+    if (!user_account) {
+      return ctx.unauthorized('User does not exist.');
+    }
+
+    const targetCart = await strapi.services['cart'].findOne({ user_account });
+
+    if (!targetCart) {
+      return ctx.unauthorized('Cart not found.');
+    }
+
+    const entity = await strapi.services['cart'].update(
+      { id: targetCart.id },
+      { cartItems: [] });
 
     return sanitizeEntity(entity, { model: strapi.models['cart'] });
   },
