@@ -16,7 +16,7 @@ module.exports = {
     }
 
     const { updateItems = [], removeItems = [] } = ctx.request.body;
-    const targetCart = await strapi.services['cart'].findOne({ user_account });
+    const targetCart = await strapi.services.cart.findOne({ user_account });
 
     if (!updateItems.length && !removeItems.length) {
       return ctx.unauthorized('No item to update.');
@@ -48,17 +48,17 @@ module.exports = {
         !removeItems.some(item => ci.card_product.toString() === item.cardProduct.toString()))
       );
 
-      entity = await strapi.services['cart'].update(
+      entity = await strapi.services.cart.update(
         { id: targetCart.id },
         { cartItems: filteredNewItems });
     } else {
-      entity = await strapi.services['cart'].create({
+      entity = await strapi.services.cart.create({
         user_account,
         cartItems: updateItems.map(({ quantity, cardProduct }) => ({ quantity, card_product: cardProduct }))
       });
     }
 
-    return sanitizeEntity(entity, { model: strapi.models['cart'] });
+    return sanitizeEntity(entity, { model: strapi.models.cart });
   },
   async clearItems(ctx) {
     const { user_account } = ctx.state.user || {};
@@ -67,16 +67,37 @@ module.exports = {
       return ctx.unauthorized('User does not exist.');
     }
 
-    const targetCart = await strapi.services['cart'].findOne({ user_account });
+    const targetCart = await strapi.services.cart.findOne({ user_account });
 
     if (!targetCart) {
       return ctx.unauthorized('Cart not found.');
     }
 
-    const entity = await strapi.services['cart'].update(
+    const entity = await strapi.services.cart.update(
       { id: targetCart.id },
-      { cartItems: [] });
+      { cartItems: [] }
+    );
 
-    return sanitizeEntity(entity, { model: strapi.models['cart'] });
+    return sanitizeEntity(entity, { model: strapi.models.cart });
+  },
+  async clearCart(ctx) {
+    const { user_account } = ctx.state.user || {};
+
+    if (!user_account) {
+      return ctx.unauthorized('User does not exist.');
+    }
+
+    const targetCart = await strapi.services.cart.findOne({ user_account });
+
+    if (!targetCart) {
+      return ctx.unauthorized('Cart not found.');
+    }
+
+    const entity = await strapi.services.cart.update(
+      { id: targetCart.id },
+      { cartItems: [], paymentIntent: null }
+    );
+
+    return sanitizeEntity(entity, { model: strapi.models.cart });
   },
 };

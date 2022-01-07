@@ -11,7 +11,7 @@ module.exports = {
   async updateItems(ctx) {
     const { user_account } = ctx.state.user;
     const { addItems = [], removeItems = [] } = ctx.request.body;
-    const targetFav = await strapi.services['favorite'].findOne({ user_account });
+    const targetFav = await strapi.services.favorite.findOne({ user_account });
 
     let entity;
     if (targetFav) {
@@ -30,16 +30,16 @@ module.exports = {
         .filter(cp => !removeItems.some(item => cp.id.toString() === item.toString()))
         .map(cp => cp.id)
 
-      entity = await strapi.services['favorite'].update(
+      entity = await strapi.services.favorite.update(
         { id: targetFav.id },
         { card_products: filteredNewItems });
     } else {
-      entity = await strapi.services['favorite'].create({
+      entity = await strapi.services.favorite.create({
         user_account,
         card_products: addItems.map(item => ({ id: item }))
       });
     }
  
-    return sanitizeEntity(entity, { model: strapi.models['favorite'] });
+    return sanitizeEntity(entity, { model: strapi.models.favorite });
   },
 };

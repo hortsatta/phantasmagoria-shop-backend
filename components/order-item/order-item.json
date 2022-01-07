@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_order_item_order_items",
+  "info": {
+    "name": "Order_Item",
+    "icon": "apple-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "card_product": {
+      "model": "card-product"
+    },
+    "price": {
+      "type": "decimal",
+      "default": 0
+    },
+    "quantity": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

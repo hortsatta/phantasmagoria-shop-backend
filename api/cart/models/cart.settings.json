@@ -19,6 +19,10 @@
       "type": "component",
       "repeatable": true,
       "component": "cart-item.cart-item"
+    },
+    "paymentIntent": {
+      "type": "string",
+      "unique": true
     }
   }
 }

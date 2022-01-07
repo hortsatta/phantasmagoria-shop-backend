@@ -15,11 +15,6 @@
     "date": {
       "type": "datetime"
     },
-    "card_products": {
-      "via": "orders",
-      "collection": "card-product",
-      "dominant": true
-    },
     "user_account": {
       "model": "user-account",
       "via": "orders"
@@ -31,6 +26,24 @@
       "type": "component",
       "repeatable": true,
       "component": "updated-by.updated-by"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "address.address"
+    },
+    "shippingFee": {
+      "type": "decimal",
+      "default": 0
+    },
+    "discountAmount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "orderItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order-item.order-item"
     }
   }
 }

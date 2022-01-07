@@ -28,7 +28,7 @@ module.exports = {
           datetime: Date.now(),
         },
       ] : [{
-        user: ctx.state.user.id,
+        user: ctx.state.user?.id || targetUserAccount.user.id,
         datetime: Date.now(),
       }];
 

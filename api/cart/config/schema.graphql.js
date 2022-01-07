@@ -7,6 +7,7 @@ module.exports = {
   mutation: `
     updateCartItems(updateItems: [ComponentCartItemCartItemInput], removeItems: [ComponentCartItemCartItemInput]): Cart
     clearCartItems: Cart
+    clearCart: Cart
   `,
   type: {},
   resolver: {
@@ -18,6 +19,10 @@ module.exports = {
       clearCartItems: {
         description: 'Clear all cart items from current user',
         resolver: 'application::cart.cart.clearItems',
+      },
+      clearCart: {
+        description: 'Clear cart from current user',
+        resolver: 'application::cart.cart.clearCart',
       }
     },
   },

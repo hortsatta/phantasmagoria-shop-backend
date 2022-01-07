@@ -63,6 +63,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/carts/clear-cart",
+      "handler": "cart.clearCart",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

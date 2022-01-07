@@ -47,6 +47,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/orders/payment-intent",
+      "handler": "order.upsertPaymentIntent",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

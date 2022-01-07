@@ -50,10 +50,6 @@
       "repeatable": true,
       "component": "updated-by.updated-by"
     },
-    "orders": {
-      "via": "card_products",
-      "collection": "order"
-    },
     "isActive": {
       "type": "boolean",
       "default": true
