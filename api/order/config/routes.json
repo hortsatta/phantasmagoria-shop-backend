@@ -55,6 +55,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "GET",
+      "path": "/orders/payment-intent/:id",
+      "handler": "order.getPaymentIntent",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

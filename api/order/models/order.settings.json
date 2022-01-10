@@ -44,6 +44,9 @@
       "type": "component",
       "repeatable": true,
       "component": "order-item.order-item"
+    },
+    "paymentIntent": {
+      "type": "string"
     }
   }
 }

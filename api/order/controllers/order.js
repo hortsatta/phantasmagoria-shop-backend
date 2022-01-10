@@ -87,25 +87,53 @@ module.exports = {
     // then create new payment intent and update cart.
     // Else, update existing payment intent. Finally, return client secret key.
     try {
-      let clientSecret;
+      let rawPaymentIntent;
       if (!cartPaymentIntent) {
-        const { id: paymentIntentId, client_secret } = await stripe.paymentIntents.create({
+        const paymentIntent = await stripe.paymentIntents.create({
           amount,
           currency: 'usd',
           automatic_payment_methods: {
             enabled: true,
           },
         });
+
         await strapi.services.cart.update(
           { id: targetCart.id },
-          { paymentIntent: paymentIntentId }
+          { paymentIntent: paymentIntent.id }
         );
-        clientSecret = client_secret;
+
+        rawPaymentIntent = paymentIntent;
       } else {
-        const { client_secret } = await stripe.paymentIntents.update(cartPaymentIntent, { amount });
-        clientSecret = client_secret;
+        const paymentIntent = await stripe.paymentIntents.update(cartPaymentIntent, { amount });
+        rawPaymentIntent = paymentIntent;
       }
-      return ctx.send({ clientSecret });
+
+      const { id: piid, currency, customer, description, status, client_secret, created } = rawPaymentIntent;
+      return ctx.send({
+        id: piid,
+        amount,
+        currency,
+        customer,
+        description,
+        status,
+        clientSecret: client_secret,
+        created,
+      });
+    } catch (error) {
+      return ctx.serverUnavailable(`We've encountered a problem.`);
+    }
+  },
+  async getPaymentIntent(ctx) {
+    const { user_account } = ctx.state.user || {};
+    const { id } = ctx.params || {};
+    // Return if user account or user cart does not exist.
+    if (!user_account || !id) {
+      return ctx.unauthorized('User or order does not exist.');
+    }
+
+    try {
+      const paymentIntent = await strapi.services.order.getStripePaymentIntent(id);
+      return ctx.send({ paymentIntent });
     } catch (error) {
       return ctx.serverUnavailable(`We've encountered a problem.`);
     }

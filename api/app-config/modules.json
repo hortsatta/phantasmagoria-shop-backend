@@ -103,5 +103,19 @@
         "hidden": true
       }
     }
+  },
+  "order": {
+    "key": "order",
+    "path": "/order",
+    "label": "Order",
+    "hidden": true,
+    "children": {
+      "complete": {
+        "key": "order-complete",
+        "path": "/complete",
+        "label": "Order Complete",
+        "hidden": true
+      }
+    }
   }
 }
