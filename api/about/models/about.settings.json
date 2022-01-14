@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "name": "about"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "coverImage": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "title"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
