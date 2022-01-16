@@ -13,14 +13,14 @@
       "list": {
         "key": "shop-list",
         "path": "/",
-        "label": "Shop List",
-        "hidden": true
+        "label": "Shop",
+        "iconName": "storefront"
       },
       "landing": {
         "key": "shop-landing",
         "path": "/landing",
         "label": "Landing",
-        "iconName": "storefront"
+        "hidden": true
       },
       "add": {
         "key": "shop-item-add",
