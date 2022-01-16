@@ -8,6 +8,20 @@
 const { sanitizeEntity } = require('strapi-utils');
 
 module.exports = {
+  async create(ctx) {
+    const { user_account } = ctx.state.user  || {};
+    const { cartItems } = ctx.request.body;
+
+    if (!user_account) {
+      return ctx.unauthorized('User does not exist.');
+    }
+
+    const entity = await strapi.services.cart.create({
+      user_account,
+      cartItems: cartItems.map(({ quantity, cardProduct }) => ({ quantity, card_product: cardProduct }))
+    });
+    return sanitizeEntity(entity, { model: strapi.models.cart });
+  },
   async updateItems(ctx) {
     const { user_account } = ctx.state.user || {};
 
